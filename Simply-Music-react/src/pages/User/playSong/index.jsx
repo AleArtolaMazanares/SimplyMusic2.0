@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../playSong/style.css";
 import HandleSong from "../../../components/handleSong";
 import InfoArtist from "../../../components/InfoArtist";
-import BtnPagination from "../../../components/BtnPagination";
 import Related from "../../../components/related";
 
 const PlaySong = () => {
