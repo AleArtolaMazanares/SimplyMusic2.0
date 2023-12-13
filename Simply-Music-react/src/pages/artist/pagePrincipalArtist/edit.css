@@ -1,0 +1,70 @@
+/* style.css */
+
+.containerFormEdit {
+  position: relative;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #161616;
+  border-radius: 8px;
+  box-shadow: 0px 15px 60px rgba(29, 122, 171, 1);
+  border: 1px solid rgb(49, 172, 238);
+  color: rgb(49, 172, 238);
+}
+
+.logoImage {
+  position: absolute; /* Posiciona el logo de forma absoluta */
+  top: -30px; /* Ajusta la distancia desde la parte superior según tus necesidades */
+  right: 10px; /* Ajusta la distancia desde la derecha según tus necesidades */
+  width: 50px; /* Ajusta el ancho según tus necesidades */
+  height: auto; /* Mantiene la proporción original */
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  color: #b3b3b3;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(49, 172, 238);
+  border-radius: 4px;
+  background-color: #333;
+  color: white;
+}
+
+
+
+.submitButton {
+  width: 100%;
+  padding: 14px 13px 12px 13px;
+  margin: 0;
+  color: white;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  border: 0;
+  outline: 1px solid rgba(29, 122, 171, 1);
+  border-radius: 8px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+  box-sizing: border-box;
+}
+
+.submitButton:hover {
+  background-color: rgba(29, 122, 171, 1);
+  color: #161616;
+}

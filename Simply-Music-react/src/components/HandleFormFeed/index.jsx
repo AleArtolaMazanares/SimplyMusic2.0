@@ -77,13 +77,14 @@ function HandleForFeed({ id }) {
   return (
     <div className="formFeedSubmit">
       <div className="feedInput">
+      <img src="https://cdn.discordapp.com/attachments/1121084510990245908/1184543561564291182/simply_Mesa_de_trabajo_1.png?ex=658c5b28&is=6579e628&hm=5e13e033abe8789cdb9e68f1440a444c83365cffa90f57d6cdb86db6a6e1e518&" alt="" />
       <form onSubmit={handleSubmit}>
-        {/* No se muestra el campo user_id en el formulario */}
         <input type="hidden" name="user_id" value={formData.user_id} />
 
         <label>
          
           <input
+           placeholder="What do you think today?"
             type="text"
             name="content"
             value={formData.content}
@@ -94,13 +95,14 @@ function HandleForFeed({ id }) {
 
         {/* No se muestra el campo date pero se llena automáticamente */}
         <input
+       
           type="hidden"
           name="date"
           value={formData.date}
           onChange={handleInputChange}
         />
 
-        <button id="buttonFeed" type="submit">Submit</button>
+        <button id="buttonFeed" type="submit">POST</button>
       </form>
       </div>
     </div>

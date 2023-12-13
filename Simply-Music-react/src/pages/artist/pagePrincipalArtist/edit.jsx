@@ -1,5 +1,8 @@
+// EditPage.jsx
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../../../pages/artist//pagePrincipalArtist/edit.css";
 
 function EditPage() {
   const { id } = useParams(); // Obtener el id de la URL
@@ -67,7 +70,12 @@ function EditPage() {
   };
 
   return (
-    <div>
+    <div className="containerFormEdit">
+      <img
+        src="https://cdn.discordapp.com/attachments/1121084510990245908/1184543561564291182/simply_Mesa_de_trabajo_1.png?ex=658c5b28&is=6579e628&hm=5e13e033abe8789cdb9e68f1440a444c83365cffa90f57d6cdb86db6a6e1e518&"
+        alt="Logo"
+        className="logoImage"
+      />
       <h2>Edit Artist Information</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -77,6 +85,7 @@ function EditPage() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            className="inputField"
           />
         </label>
         <br />
@@ -87,6 +96,7 @@ function EditPage() {
             name="image"
             value={formData.image}
             onChange={handleChange}
+            className="inputField"
           />
         </label>
         <br />
@@ -97,6 +107,7 @@ function EditPage() {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            className="inputField"
           />
         </label>
         <br />
@@ -107,10 +118,13 @@ function EditPage() {
             name="genre"
             value={formData.genre}
             onChange={handleChange}
+            className="inputField"
           />
         </label>
         <br />
-        <button type="submit">Save Changes</button>
+        <button type="submit" className="submitButton">
+          Save Changes
+        </button>
       </form>
     </div>
   );

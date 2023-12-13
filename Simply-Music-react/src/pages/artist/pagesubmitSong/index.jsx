@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useSimplyContext } from "../../../components/simplyContext/simplyProvider";
+import "../../../pages/artist/pagesubmitSong/style.css";
 
 function SongSubmit() {
   const { id } = useParams();
@@ -80,7 +81,9 @@ function SongSubmit() {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: `Por favor, complete los campos obligatorios: ${emptyFields.join(", ")}`,
+        text: `Por favor, complete los campos obligatorios: ${emptyFields.join(
+          ", "
+        )}`,
       });
       return;
     }
@@ -164,17 +167,22 @@ function SongSubmit() {
   ];
 
   return (
-    <div>
+    <div className="containerFormSong">
+         <img src={"https://cdn.discordapp.com/attachments/1121084510990245908/1184543561564291182/simply_Mesa_de_trabajo_1.png?ex=658c5b28&is=6579e628&hm=5e13e033abe8789cdb9e68f1440a444c83365cffa90f57d6cdb86db6a6e1e518&  "} alt="Logo" className="logoImage" />
       <h2>Song Submission Form</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        {Object.entries(formData).map(
-          ([key, value]) =>
-            key !== "content_artist_id" && (
-              <React.Fragment key={key}>
-                <label>
-                  {key.replace(/_/g, " ")}:
+      <div className="FormSubmitSong">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {Object.entries(formData).map(
+            ([key, value]) =>
+              key !== "content_artist_id" && (
+                <React.Fragment key={key}>
                   {key === "genre" ? (
-                    <select name={key} value={value} onChange={handleChange}>
+                    <select
+                      name={key}
+                      value={value}
+                      onChange={handleChange}
+                      placeholder={`Selecciona un ${key.replace(/_/g, " ")}`}
+                    >
                       <option value="" disabled>
                         Selecciona un género
                       </option>
@@ -185,7 +193,15 @@ function SongSubmit() {
                       ))}
                     </select>
                   ) : key === "song_file" ? (
-                    <input type="file" name={key} onChange={handleChange} />
+                    <input
+                      type="file"
+                      name={key}
+                      onChange={handleChange}
+                      placeholder={`Selecciona un archivo ${key.replace(
+                        /_/g,
+                        " "
+                      )}`}
+                    />
                   ) : key === "image" ? (
                     <>
                       <input
@@ -193,8 +209,16 @@ function SongSubmit() {
                         name={key}
                         value={value}
                         onChange={handleChange}
+                        placeholder={`Introduce la URL de la ${key.replace(
+                          /_/g,
+                          " "
+                        )}`}
                       />
-                      <img src={value} alt="Preview" style={{ maxWidth: "200px" }} />
+                      <img
+                        src={value}
+                        alt="Preview"
+                        style={{ maxWidth: "200px" }}
+                      />
                     </>
                   ) : (
                     <input
@@ -202,15 +226,16 @@ function SongSubmit() {
                       name={key}
                       value={value}
                       onChange={handleChange}
+                      placeholder={`Introduce ${key.replace(/_/g, " ")}`}
                     />
                   )}
-                </label>
-                <br />
-              </React.Fragment>
-            )
-        )}
-        <button type="submit">Enviar</button>
-      </form>
+                  <br />
+                </React.Fragment>
+              )
+          )}
+          <button type="submit"  id="button">Enviar</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,91 @@
+/* style.css */
+
+/* style.css */
+
+.containerFormSong {
+    position: relative; /* Añade posición relativa para posicionar el logo de forma absoluta */
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #161616e7;
+    border-radius: 8px;
+    box-shadow: 0px 15px 60px rgba(29, 122, 171, 1);
+    border: 1px solid rgb(49, 172, 238);
+    color: white;
+    text-align: center; /* Alinea el contenido al centro */
+  }
+  
+  .logoImage {
+    position: absolute; /* Posiciona el logo de forma absoluta */
+    top: -30px; /* Ajusta la distancia desde la parte superior según tus necesidades */
+    right: 10px; /* Ajusta la distancia desde la derecha según tus necesidades */
+    width: 50px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Mantiene la proporción original */
+  }
+  
+  /* Resto del código permanece igual */
+  
+
+.FormSubmitSong {
+  margin-top: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Updated style for input and select */
+input,
+select {
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid rgb(49, 172, 238);
+  background-color: #161616; /* Set background color to black */
+  color: #fff; /* Set text color to white */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style for placeholder text */
+input::placeholder,
+select::placeholder {
+  color: gray; /* Set placeholder color to blue */
+}
+
+
+img {
+  margin-top: 10px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.logoImage{
+    width: 100px;
+    height: 100px;
+}
+
+
+
+#button{
+    width: 100%;
+    padding: 14px 13px 12px 13px;
+    margin: 0;
+    color: white;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 14px;
+    border: 0;
+    outline: 1px solid rgba(29, 122, 171, 1);
+    border-radius: 8px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    box-sizing: border-box;
+}
+
+#button:hover {
+    background-color:rgba(29, 122, 171, 1);
+    color: #161616;
+  }

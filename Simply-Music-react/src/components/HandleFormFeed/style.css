@@ -2,19 +2,41 @@
 
 
 .formFeedSubmit{
-    background-color: rgb(104, 61, 61);
+    background-color: rgba(23, 22, 22, 0.654);
     width: 675px;
-    height: 100px;
-    margin-left: 25%;
+    height: 200px;
+    margin-left: 22%;
     border-radius: 8px;
     margin-bottom: 2%;
-    border: 1px yellow solid;
-    padding: 10px;
-
-
+    padding: 30px;
 }
 
 #buttonFeed{
-    width: 100px;
-    height: 30px;
+    width: 80%;
+    padding: 14px 13px 12px 13px;
+    color: white;
+    background-color:rgba(67, 63, 63, 0.712);
+    font-weight: 600;
+    font-size: 14px;
+    border: 0;
+    outline: 1px solid rgba(29, 122, 171, 1);
+    border-radius: 8px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all ease-in-out .3s;
+    box-sizing: border-box;
+    margin-left: 10%;
+    margin-top: -3%;
+}
+
+#buttonFeed:hover{
+background-color: rgba(29, 122, 171, 1);
+}
+
+
+.feedInput img{
+width: 130px;
+height: 130px;
+margin-left: -7%;
+margin-top: -10%;
 }

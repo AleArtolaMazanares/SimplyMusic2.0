@@ -152,6 +152,7 @@ function FeedContent() {
               <button onClick={() => editFeed(feed.id, feed.content)}>
                 Guardar
               </button>
+              
             </div>
           ) : (
             <div>

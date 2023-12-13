@@ -79,6 +79,7 @@ background-color: #5a515178;
   align-items: center;
   font-size: 15px;
 }
+
 .linkCards {
   text-decoration: none; /* Quita el subrayado predeterminado del enlace */
   color: white; /* Color de texto blanco por defecto */
@@ -132,23 +133,26 @@ body{
   margin-left: 5px;
 }
 
-.feedHome{
- 
-  
 
-}
 .feedHome input{
-  width: 200px;
-  height: 50px;
+  width: 80%;
+  height: 150px;
+  padding: 11px 35px;
+  background: rgba(67, 63, 63, 0.712);
+  outline: 1px solid rgba(29, 122, 171, 1);
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+  color:rgba(29, 122, 171, 1);
+  font-size: 18px;
+  margin-top: -9%;
 }
 .feedContent{
-  background-color: red;
-  width: 700px;
-  height: 90vh;
-  margin-left: 25%;
+  background-color:rgba(23, 22, 22, 0.654);
+  width: 737px;
+  min-height: 83vh;
+  margin-left: 22%;
   border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
 }
 
 
