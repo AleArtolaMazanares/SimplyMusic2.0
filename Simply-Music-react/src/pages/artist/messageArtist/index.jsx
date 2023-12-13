@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import "../messageArtist/style.css"; // Asegúrate de importar el archivo CSS adecuado
 
 const MessageForm = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const getCurrentHour = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const [formData, setFormData] = useState({
     message_content: "",
-    sent_hour: "",
+    sent_hour: getCurrentHour(), // Obtener la hora actual al inicializar el componente
     content_artist_id: id,
   });
 
@@ -29,9 +40,18 @@ const MessageForm = () => {
       });
 
       if (response.ok) {
-        console.log("enviado con exito")
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+
+        navigate(`/user/${id}`)
+        
       } else {
-        console.log("hubo un problema")
+        console.log("hubo un problema");
       }
     } catch (error) {
       console.error("Error submitting message:", error);
@@ -39,32 +59,30 @@ const MessageForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="message_content">Message Content:</label>
+    <form className="messageForm" onSubmit={handleSubmit}>
+      <label htmlFor="message_content" className="formLabel">
+        Message Content:
+      </label>
       <input
         type="text"
         id="message_content"
         name="message_content"
         value={formData.message_content}
         onChange={handleChange}
+        className="inputField"
       />
 
-      <label htmlFor="sent_hour">Sent Hour:</label>
+      {/* Ocultar el campo sent_hour */}
       <input
-        type="text"
+        type="hidden"
         id="sent_hour"
         name="sent_hour"
         value={formData.sent_hour}
-        onChange={handleChange}
       />
 
-      <input
-        type="hidden"
-        name="content_artist_id"
-        value={formData.content_artist_id}
-      />
-
-      <button type="submit">Submit</button>
+      <button type="submit" className="submitButton">
+        Submit
+      </button>
     </form>
   );
 };

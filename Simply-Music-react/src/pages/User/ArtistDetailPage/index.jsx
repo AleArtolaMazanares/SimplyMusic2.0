@@ -1,11 +1,10 @@
 // Import the necessary libraries and components from React and React Router DOM
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Import additional styles and necessary components
 import "../ArtistDetailPage/style.css";
 import CardArtistDetail from "../../../components/cardAtistDetails/index";
-import Messages from "../../../components/messages/index";
 import Songs from "../../../components/Songs";
 
 // Create the functional component ArtistDetailPage
