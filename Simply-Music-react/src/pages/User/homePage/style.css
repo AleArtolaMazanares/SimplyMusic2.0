@@ -150,9 +150,11 @@ body{
 .feedContent{
   background-color:rgba(23, 22, 22, 0.654);
   width: 737px;
-  min-height: 83vh;
+  min-height: 80vh;
   margin-left: 22%;
   border-radius: 8px;
+  outline: 1px solid rgba(29, 122, 171, 1);
+  
 }
 
 

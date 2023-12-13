@@ -158,7 +158,10 @@ function HomePage() {
             <HandleForFeed id={id} />
           </div>
           <div className="feedContent">
+            <center>
+
             <FeedContent />
+            </center>
           </div>
         </div>
       </div>

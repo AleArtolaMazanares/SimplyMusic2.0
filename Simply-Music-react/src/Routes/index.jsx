@@ -48,7 +48,7 @@ function RoutesPages() {
               }
             />
             <Route
-              path="FormArtist"
+              path="FormArtist/:id"
               element={
                 <ProtectedRoute element={<Artist />} requiredRoles={["user"]} />
               }

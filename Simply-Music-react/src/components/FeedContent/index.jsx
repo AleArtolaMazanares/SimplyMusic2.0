@@ -153,7 +153,7 @@ function FeedContent() {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="contentFeedC">
               {/* Vista normal si no está en modo de edición */}
               {feed.content} - {feed.date}{" "}
               {String(feed.user_id) === String(authenticatedUserId) && (

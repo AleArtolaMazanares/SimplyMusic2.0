@@ -89,8 +89,8 @@ const ArtistDetailPage = () => {
 
   // Render the artist detail page
   return (
-    <div class="containerArtistDetails">
-      <div class="artistInfoArtistDetail">
+    <div className="containerArtistDetails">
+      <div className="artistInfoArtistDetail">
         {/* Show loading message or render the CardArtistDetail component with artist information */}
         {loadingArtist ? (
           <p>Loading artist...</p>

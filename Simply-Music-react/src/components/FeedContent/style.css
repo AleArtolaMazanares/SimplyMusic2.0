@@ -1,18 +1,27 @@
 .feedContainer {
     width: 560px;
     display: grid;
-    grid-template-columns:repeat(1,1fr)
+    grid-template-columns:repeat(1,1fr);
+    text-align: center;
+
   }
   
   /* Estilos para cada tarjeta de feed */
   .feedCard {
-    width: 660px;
-    height: 170px;
+    width: 500px;
+    height: 150px;
     background: rgba(67, 63, 63, 0.712);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    margin-left: 1.1%;
-    margin-top: 1%;
+    align-items: center;
+    justify-content: center;
+  
     outline: 1px solid rgba(29, 122, 171, 1);
+    margin: 1%;
+  }
+
+  .contentFeedC{
+    margin-top: 2%;
+    padding: 15px;
   }

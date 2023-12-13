@@ -19,6 +19,7 @@ function Artist() {
     mp3_file: null,
     description_artist: "",
     tags: "",
+    user_id: id,
   });
 
   // State to control the form submission state
@@ -26,6 +27,9 @@ function Artist() {
 
   // State to check if the form has already been submitted for the current user
   const [currentUserSubmitted, setCurrentUserSubmitted] = useState(false);
+
+  // LocalStorage key based on user ID
+  const localStorageKey = `formSubmitted_${id}`;
 
   // Effect to get information about the submitted form for the current user
   useEffect(() => {
@@ -65,10 +69,11 @@ function Artist() {
   // Effect to handle changes in formSubmitted and currentUserSubmitted
   useEffect(() => {
     // Check if the form has already been submitted for another user
-    if (formSubmitted || currentUserSubmitted) {
+    const userFormSubmitted = localStorage.getItem(localStorageKey);
+    if (formSubmitted || currentUserSubmitted || userFormSubmitted) {
       setFormSubmitted(false);
     }
-  }, [formSubmitted, currentUserSubmitted]);
+  }, [formSubmitted, currentUserSubmitted, localStorageKey]);
 
   // Handle changes in form field values
   const handleChange = (e) => {
@@ -84,7 +89,8 @@ function Artist() {
     e.preventDefault();
 
     // If already submitted for this user, do nothing
-    if (formSubmitted || currentUserSubmitted) {
+    const userFormSubmitted = localStorage.getItem(localStorageKey);
+    if (formSubmitted || currentUserSubmitted || userFormSubmitted) {
       return;
     }
 
@@ -107,6 +113,10 @@ function Artist() {
       if (response.ok) {
         // Update the state to indicate that the form has been submitted
         setFormSubmitted(true);
+
+        // Guardar el indicador en el localStorage específico del usuario
+        localStorage.setItem(localStorageKey, "true");
+
         // Redirect to the desired route
         window.location.href = `/home`; // Replace with your destination route
       } else {
@@ -126,45 +136,54 @@ function Artist() {
 
   // Render the form
   return (
-    
     <div className="formNewArtist">
-
       <div id="infoNewArtist">
-      <div className="logoFormArtist"><img src="https://cdn.discordapp.com/attachments/1110957174655553606/1181636395106836510/simply_Mesa_de_trabajo_1.png?ex=6581c7a6&is=656f52a6&hm=9b51e57aaaf6ff6cbe6a70c9b360e681e08465d18d188c9ac5a82b62902d69c8&" alt="" /></div>
+        <div className="logoFormArtist">
+          <img
+            src="https://cdn.discordapp.com/attachments/1110957174655553606/1181636395106836510/simply_Mesa_de_trabajo_1.png?ex=6581c7a6&is=656f52a6&hm=9b51e57aaaf6ff6cbe6a70c9b360e681e08465d18d188c9ac5a82b62902d69c8&"
+            alt=""
+          />
+        </div>
         <p>
           Join us in this immersive journey and share your music with others!
         </p>
       </div>
-
       <div className="contentArtistForm">
         {/* Render the form */}
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           {/* Map over the form fields and render the corresponding input elements */}
-          {Object.entries(formData).map(([key, value]) => (
-            <React.Fragment key={key}>
-              <label>
-                {/* Display the field name and replace underscores with spaces */}
-                {key.replace(/_/g, " ")}:
-                {/* Check if the key is "mp3_file" to render a file input field */}
-                {key === "mp3_file" ? (
-                  <input type="file" name={key} onChange={handleChange} />
-                ) : (
-                  ({
-                    /* For other keys, render a text or password input field as needed */
-                  },
-                  (
-                    <input
-                      type={key.includes("password") ? "password" : "text"}
-                      name={key}
-                      value={value}
-                      onChange={handleChange}
-                    />
-                  ))
-                )}
-              </label>
-              <br />
-            </React.Fragment>
-          ))}
+          {Object.entries(formData).map(([key, value]) => {
+            // Exclude the user_id field from rendering
+            if (key === "user_id") {
+              return null;
+            }
+  
+            return (
+              <React.Fragment key={key}>
+                <label>
+                  {/* Display the field name and replace underscores with spaces */}
+                  {key.replace(/_/g, " ")}:
+                  {/* Check if the key is "mp3_file" to render a file input field */}
+                  {key === "mp3_file" ? (
+                    <input type="file" name={key} onChange={handleChange} />
+                  ) : (
+                    ({
+                      /* For other keys, render a text or password input field as needed */
+                    },
+                    (
+                      <input
+                        type={key.includes("password") ? "password" : "text"}
+                        name={key}
+                        value={value}
+                        onChange={handleChange}
+                      />
+                    ))
+                  )}
+                </label>
+                <br />
+              </React.Fragment>
+            );
+          })}
           <button type="submit">Submit</button>
         </form>
       </div>
