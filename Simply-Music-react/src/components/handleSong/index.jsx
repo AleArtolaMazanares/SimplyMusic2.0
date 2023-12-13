@@ -26,48 +26,46 @@ function HandleSong({
   // Estado para almacenar la duración total de la canción
   const [duration, setDuration] = useState(0);
 
-  // Referencia al elemento de audio
+  /* `const audioRef = useRef();` is creating a reference to the audio element in the component. This
+  reference can be used to access and manipulate the audio element directly, such as playing or
+  pausing the audio, changing the current time, or accessing other properties and methods of the
+  audio element. */
   const audioRef = useRef();
 
-  // Función para manejar la reproducción o pausa de la canción
+  /* This code block is responsible for playing or pausing the audio when the play/pause button is
+   clicked. */
   const handlePlay = () => {
-    // Si está en reproducción, pausa; de lo contrario, reproduce
     if (isPlaying) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
     }
-    // Actualizar el estado de reproducción
     setIsPlaying(!isPlaying);
   };
 
   // Función para pausar la reproducción de la canción
   const handlePause = () => {
     audioRef.current.pause();
-    // Actualizar el estado de reproducción a falso
     setIsPlaying(false);
   };
 
-  // Función para manejar la actualización del tiempo de reproducción
+  /* La línea `setCurrentTime(audioRef.current.currentTime);` está actualizando la variable de estado
+`currentTime` con el tiempo actual de la reproducción de audio. */
   const handleTimeUpdate = () => {
-    // Actualizar el estado del tiempo actual de reproducción
     setCurrentTime(audioRef.current.currentTime);
   };
 
-  // Función para manejar la carga de datos del audio
+  /* La línea `setDuration(audioRef.current.duration);` está actualizando la variable de estado `duration` con
+la duración total de la canción. */
   const handleLoadedData = () => {
-    // Obtener y actualizar la duración total de la canción
     setDuration(audioRef.current.duration);
   };
 
-  // Función para manejar el clic en la barra de progreso y saltar a una posición específica
+  /* El bloque de código que proporcionaste maneja el evento de clic en la barra de progreso del reproductor de audio. */
   const handleProgressBarClick = (e) => {
-    // Calcular el tiempo de reproducción según la posición del clic
     const clickedTime =
       (e.nativeEvent.offsetX / e.target.clientWidth) * duration;
-    // Establecer la posición de reproducción en el tiempo calculado
     audioRef.current.currentTime = clickedTime;
-    // Actualizar el estado del tiempo actual de reproducción
     setCurrentTime(clickedTime);
   };
 

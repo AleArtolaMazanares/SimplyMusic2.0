@@ -6,7 +6,7 @@ import "./style.css";
 function BtnPagination({ setCurrentPage, relatedSongs, songsPerPage }) {
   return (
     <div className="btnPagination">
-      <button 
+      <button
         onClick={() =>
           setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage))
         }
@@ -14,7 +14,10 @@ function BtnPagination({ setCurrentPage, relatedSongs, songsPerPage }) {
         <FontAwesomeIcon icon={faArrowLeft} />
       </button>
 
-      <button className="btnPagination"
+      {/* Este código define un componente de botón con el nombre de clase "btnPagination". Cuando este botón está
+      Al hacer clic, llama a la función `setCurrentPage` con una función de devolución de llamada como argumento. */}
+      <button
+        className="btnPagination"
         onClick={() =>
           setCurrentPage((prevPage) =>
             prevPage < Math.ceil(relatedSongs.length / songsPerPage)

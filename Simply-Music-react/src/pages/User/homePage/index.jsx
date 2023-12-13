@@ -42,6 +42,12 @@ function HomePage() {
     setLoading(false);
   }, []);
 
+  /* Este código filtra las matrices "artistas" y "canciones" según el "término de búsqueda". Crea un
+    nueva matriz llamada `combinedResults` combinando las matrices `artistas` y `canciones` usando el
+    operador de extensión (`[...artistas,...canciones]`). Luego, filtra esta matriz combinada comprobando si
+    el "nombre", "título_canción" o "género" de cada elemento incluye el "término de búsqueda" (ignorando mayúsculas y minúsculas).
+    sensibilidad). Si alguna de estas condiciones es cierta, el elemento se incluye en el
+    Matriz `combinedResults`. Finalmente, se devuelve la matriz `combinedResults`. */
   const handleSearch = () => {
     const combinedResults = [...artists, ...songs].filter((result) => {
       const includesTerm =
@@ -149,10 +155,10 @@ function HomePage() {
         </div>
         <div className="feedContainer">
           <div className="feedHome">
-           <HandleForFeed id={id} />
+            <HandleForFeed id={id} />
           </div>
           <div className="feedContent">
-          <FeedContent />
+            <FeedContent />
           </div>
         </div>
       </div>

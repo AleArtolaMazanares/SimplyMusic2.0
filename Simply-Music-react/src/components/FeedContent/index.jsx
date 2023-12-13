@@ -76,10 +76,10 @@ function FeedContent() {
         throw new Error("Error al eliminar el feed");
       }
 
-      // Actualiza el estado para reflejar la eliminación del feed
+      /* El código `setFeeds((prevFeeds) => prevFeeds.filter((feed) => feed.id !== feedId));` es
+      eliminando un feed de la matriz de estado "feeds". */
       setFeeds((prevFeeds) => prevFeeds.filter((feed) => feed.id !== feedId));
     } catch (error) {
-      // Manejo de errores en caso de que la solicitud falle
       console.error("Error de solicitud:", error.message);
     }
   };
@@ -130,7 +130,8 @@ function FeedContent() {
 
   return (
     <div className="feedContainer">
-      {loading && <SpinnerLoading />} {/* Muestra el indicador de carga mientras se cargan los feeds */}
+      {loading && <SpinnerLoading />}{" "}
+      {/* Muestra el indicador de carga mientras se cargan los feeds */}
       {feeds.map((feed) => (
         <div className="feedCard" key={feed.id}>
           {editingFeed === feed.id ? (
@@ -142,9 +143,7 @@ function FeedContent() {
                 onChange={(e) =>
                   setFeeds((prevFeeds) =>
                     prevFeeds.map((f) =>
-                      f.id === feed.id
-                        ? { ...f, content: e.target.value }
-                        : f
+                      f.id === feed.id ? { ...f, content: e.target.value } : f
                     )
                   )
                 }
@@ -152,7 +151,6 @@ function FeedContent() {
               <button onClick={() => editFeed(feed.id, feed.content)}>
                 Guardar
               </button>
-              
             </div>
           ) : (
             <div>
@@ -161,11 +159,13 @@ function FeedContent() {
               {String(feed.user_id) === String(authenticatedUserId) && (
                 <div>
                   <button onClick={() => deleteFeed(feed.id)}>Eliminar</button>
-                  <button onClick={() => setEditingFeed(feed.id)}>Editar</button>
+                  <button onClick={() => setEditingFeed(feed.id)}>
+                    Editar
+                  </button>
                 </div>
               )}
               <p>
-                 {feed.user_info.name_users}{" "}
+                {feed.user_info.name_users}{" "}
                 {feed.user_info.role === "artist" && (
                   <FontAwesomeIcon icon={faCrown} />
                 )}
