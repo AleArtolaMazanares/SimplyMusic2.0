@@ -6,9 +6,13 @@
   
   /* Estilos para cada tarjeta de feed */
   .feedCard {
-    width: 780px;
+    width: 660px;
     height: 130px;
     background-color: #1c1a1a;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    margin-left: 1%;
+    margin-top: 1%;
   }

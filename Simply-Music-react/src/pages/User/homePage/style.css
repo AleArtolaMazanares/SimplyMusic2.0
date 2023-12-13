@@ -132,26 +132,20 @@ body{
   margin-left: 5px;
 }
 
-.feedContainer{
-  display: grid;
-}
-
 .feedHome{
-  background-color: rgb(104, 61, 61);
-  width: 600px;
-  height: 100px;
-  margin-left: 20%;
-  border: 1px solid yellow;
-  border-radius: 8px;
-  margin-bottom: 2%;
+ 
+  
 
 }
-
+.feedHome input{
+  width: 200px;
+  height: 50px;
+}
 .feedContent{
   background-color: red;
-  width: 1000px;
+  width: 700px;
   height: 90vh;
-  margin-left: 2%;
+  margin-left: 25%;
   border-radius: 8px;
   display: grid;
   grid-template-columns: repeat(3,1fr);
@@ -240,29 +234,3 @@ body{
 }
 
 
-
-
-/* Estilos para cada tarjeta de feed */
-.feedCard{
-  border: 1px solid yellow;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Otros estilos de diseño para la tarjeta de feed */
-}
-
-/* Estilos para el formulario de publicación */
-.feedContent form {
-  margin-bottom: 20px;
-
-}
-
-.feedContent form input[type="text"],
-.feedContent form button {
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  /* Otros estilos para el input y el botón */
-}

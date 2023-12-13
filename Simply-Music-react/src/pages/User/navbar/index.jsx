@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 function NavBar() {
   const { userRole, decryptData } = useSimplyContext();
   const [prueba, setPrueba] = useState(null);
-  const [userId, SetUserId] = useState([])
+  const [userId, SetUserId] = useState([]);
 
   const [isNavOpen, setIsNavOpen] = useState(true);
 
@@ -26,7 +26,7 @@ function NavBar() {
         if (sessionData) {
           const decryptedData = await decryptData(sessionData);
           setPrueba(decryptedData);
-          SetUserId(decryptedData.userId)
+          SetUserId(decryptedData.userId);
         }
       } catch (error) {
         console.error("Error during session decryption:", error);
@@ -49,14 +49,16 @@ function NavBar() {
           />
         </div>
         <div className="menu-items">
-        <div><p id="welcomeSession">WELCOME:</p></div>
+          <div>
+            <p id="welcomeSession">WELCOME:</p>
+          </div>
           {prueba && <p id="nameSession">{prueba.name_users}</p>}
           {userRole === "user" && (
             <>
               <Link to={`/user/${userId}`}>
                 <div>
                   <FontAwesomeIcon icon={faHouse} id="iconHome" />
-                 Home
+                  Home
                 </div>
               </Link>
 
@@ -66,6 +68,7 @@ function NavBar() {
                   Artist
                 </div>
               </Link>
+              <Link to={"/"}>Logout</Link>
             </>
           )}
 
@@ -79,18 +82,18 @@ function NavBar() {
                 <FontAwesomeIcon icon={faMicrophone} id="iconHome" />
                 main
               </Link>
+              <Link to={"/"}>Logout</Link>
             </>
           )}
           {userRole === "admin" && (
             <>
-              <p>aquí van las rutas de admin</p>
+              <Link to={"/admin"}>Home</Link>
+              <Link to={"/"}>Logout</Link>
             </>
           )}
-          <Link to={"/"}>Logout</Link>
         </div>
         <div className="menuHome">
           <h3>MUSIC LIBRARY</h3>
-
         </div>
       </div>
       <Outlet />

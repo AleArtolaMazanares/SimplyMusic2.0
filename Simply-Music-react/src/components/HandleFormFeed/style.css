@@ -1,0 +1,20 @@
+
+
+
+.formFeedSubmit{
+    background-color: rgb(104, 61, 61);
+    width: 675px;
+    height: 100px;
+    margin-left: 25%;
+    border-radius: 8px;
+    margin-bottom: 2%;
+    border: 1px yellow solid;
+    padding: 10px;
+
+
+}
+
+#buttonFeed{
+    width: 100px;
+    height: 30px;
+}

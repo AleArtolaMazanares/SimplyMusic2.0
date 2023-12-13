@@ -43,13 +43,13 @@ function HandleFeed({ id }) {
     <div>
       <h2>Feeds for User {id}</h2>
       {feeds.length === 0 ? (
-        <p>No hay comentarios.</p>
+        <p>0 new posts</p>
       ) : (
         <ul>
           {feeds.map((feed) => (
             <li key={feed.id}>
               {feed.content} - {feed.date}
-              <button onClick={() => handleDelete(feed.id)}>Eliminar</button>
+              <button onClick={() => handleDelete(feed.id)}>Delete</button>
             </li>
           ))}
         </ul>

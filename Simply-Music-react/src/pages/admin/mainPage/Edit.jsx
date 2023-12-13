@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
-import PagePrincipalArtist from "../../artist/pagePrincipalArtist";
 import HandleFeed from "../../../components/handleFeed";
 
 function EditPageAdmin() {
@@ -12,8 +12,6 @@ function EditPageAdmin() {
     name_users: "",
   });
   const [contentArtistIds, setContentArtistIds] = useState([]);
-
-
 
   const fetchContentArtistIds = async () => {
     try {
@@ -77,7 +75,13 @@ function EditPageAdmin() {
       });
 
       if (response.ok) {
-        console.log("User information updated successfully");
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
         const errorData = await response.json();
         console.error("Error updating user information:", errorData);
@@ -86,7 +90,7 @@ function EditPageAdmin() {
       console.error("Network error:", error);
     }
   };
-  console.log(userData.id)
+  console.log(userData.id);
 
   return (
     <div>

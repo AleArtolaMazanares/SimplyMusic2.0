@@ -164,7 +164,7 @@ function FeedContent() {
                 </div>
               )}
               <p>
-                Propietario: {feed.user_info.name_users}{" "}
+                 {feed.user_info.name_users}{" "}
                 {feed.user_info.role === "artist" && (
                   <FontAwesomeIcon icon={faCrown} />
                 )}

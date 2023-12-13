@@ -76,13 +76,13 @@ function HandleForFeed({ id }) {
 
   return (
     <div className="formFeedSubmit">
-
+      <div className="feedInput">
       <form onSubmit={handleSubmit}>
         {/* No se muestra el campo user_id en el formulario */}
         <input type="hidden" name="user_id" value={formData.user_id} />
 
         <label>
-          Content:
+         
           <input
             type="text"
             name="content"
@@ -100,8 +100,9 @@ function HandleForFeed({ id }) {
           onChange={handleInputChange}
         />
 
-        <button type="submit">Submit</button>
+        <button id="buttonFeed" type="submit">Submit</button>
       </form>
+      </div>
     </div>
   );
 }
