@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import MyButton from "../../../components/ButtonDeleteAdmin";
+
+import "./style.css";
+
 function MainAdmin() {
   const [users, setUsers] = useState([]);
   const [artists, setArtists] = useState([]);
@@ -89,9 +92,9 @@ function MainAdmin() {
   };
 
   return (
-    <div>
-      <h2>User List</h2>
-      <div>
+    <div  className="contentMainAdmin">
+      
+      <div className="inputAdmin">
         <input
           type="text"
           placeholder="Search users"
@@ -106,9 +109,9 @@ function MainAdmin() {
           {searchQuery.trim() !== "" && filteredResults.length > 0 && (
             <div>
               <h3>Search Results</h3>
-              <ul>
+            
                 {filteredResults.map((result) => (
-                  <li key={result.id}>
+                  <div key={result.id}>
                     <Link to={`/editPageAdmin/${result.id}`}>
                       {result.username}
                       <p>{result.name_users}</p>
@@ -118,17 +121,17 @@ function MainAdmin() {
                         handleDeleteUser(result.id, result.role === "artist")
                       }
                     ></MyButton>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+            
             </div>
           )}
           {!searchQuery.trim() && (
-            <div>
+            <div >
               <h3>User List</h3>
-              <ul>
+           
                 {users.map((user) => (
-                  <li key={user.id}>
+                  <div key={user.id}>
                     <Link to={`/editPageAdmin/${user.id}`}>
                       {user.username}
                       <p>{user.name_users}</p>
@@ -136,14 +139,14 @@ function MainAdmin() {
                     <MyButton
                       onClick={() => handleDeleteUser(user.id, false)}
                     ></MyButton>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+            
 
               <h3>Artist List</h3>
-              <ul>
+             
                 {artists.map((artist) => (
-                  <li key={artist.id}>
+                  <div key={artist.id}>
                     <Link to={`/editPageAdmin/${artist.id}`}>
                       {artist.username}
                       <p>{artist.name_users}</p>
@@ -151,9 +154,9 @@ function MainAdmin() {
                     <MyButton
                       onClick={() => handleDeleteUser(artist.id, true)}
                     ></MyButton>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+            
             </div>
           )}
         </div>

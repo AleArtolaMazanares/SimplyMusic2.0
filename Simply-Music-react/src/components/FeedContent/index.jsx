@@ -155,29 +155,35 @@ function FeedContent() {
           ) : (
             <div className="contentFeedC"> 
               {/* Vista normal si no está en modo de edición */}
-            <div className="containerContentFeed">  {feed.content} - {feed.date}{" "}</div>
-              {String(feed.user_id) === String(authenticatedUserId) && (
-                
-                <div className="buttonsFeed">
-                  <button onClick={() => deleteFeed(feed.id)}>Eliminar</button>
-                  <button onClick={() => setEditingFeed(feed.id)}>
-                    Editar
-                  </button>
-                </div>
-                
-              )}
-            
+            <div className="containerContentFeed">
+             <div id="feedContentP">{feed.content}</div>
+             <div id="feedDate">{feed.date}{" "}</div></div>
+       
+              <div className="nameUserFeed">
               <p>
                 {feed.user_info.name_users}{" "}
                 {feed.user_info.role === "artist" && (
                   <FontAwesomeIcon icon={faCrown} />
                 )}
-              </p>
+              </p></div>
+             
             </div>
+          )}    {String(feed.user_id) === String(authenticatedUserId) && (
+                
+            <div className="buttonsFeed">
+              <button onClick={() => deleteFeed(feed.id)}>Eliminar</button>
+              <button onClick={() => setEditingFeed(feed.id)}>
+                Editar
+              </button>
+            </div>
+            
           )}
+       
         </div>
       ))}
+      
     </div>
+    
   );
 }
 

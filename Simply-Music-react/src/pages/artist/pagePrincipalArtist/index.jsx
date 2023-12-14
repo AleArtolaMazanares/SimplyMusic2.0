@@ -54,7 +54,8 @@ function PagePrincipalArtist() {
 
   const fetchArtistAndSongs = async () => {
     try {
-      const artistPromises = idContent.map(async (contentId) => {
+      const artistPromises = idContent.map(async (contentId1) => {
+        const contentId = contentId1.id
         const artistUrl = `http://localhost:3001/users/content_artists/${contentId}`;
         const artistResponse = await fetch(artistUrl);
 

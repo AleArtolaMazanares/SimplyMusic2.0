@@ -6,6 +6,9 @@ import HandleFormForArtist from "../../../components/FormForArtist";
 
 const FormForArtist = () => {
   const { id } = useParams();
+  const [infoArtist, setInfoArtist] = useState(null);
+  const [usuario, setUsuario] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -13,10 +16,6 @@ const FormForArtist = () => {
     description: "",
     genre: "",
   });
-
-  const [formularioEnviado, setFormularioEnviado] = useState(false);
-  const [usuario, setUsuario] = useState(null);
-  const [loading, setLoading] = useState(true); // Inicialmente establecido como true
 
   useEffect(() => {
     const obtenerIdUsuario = async () => {
@@ -35,34 +34,27 @@ const FormForArtist = () => {
         if (response.ok) {
           const usuario = await response.json();
           setUsuario(usuario);
-          localStorage.setItem("userId", usuario.id);
+          // Verificar si el formulario ya ha sido enviado
+          const idsResponse = await fetch(
+            `http://localhost:3001/users/content_artists/get_ids_by_user?user_id=${id}`
+          );
+          if (idsResponse.ok) {
+            const info = await idsResponse.json();
+            const saveInfo = info[0].form_submitted;
+            setInfoArtist(saveInfo === true);
+          }
         } else {
           console.error("Error al obtener la información del usuario.");
         }
       } catch (error) {
         console.error("Error de red:", error);
       } finally {
-        setLoading(false); // Después de obtener la información, establecer loading a false
+        setLoading(false);
       }
     };
 
     obtenerIdUsuario();
   }, [id]);
-
-  useEffect(() => {
-    const verificarFormularioEnviado = async () => {
-      if (usuario) {
-        const formularioYaEnviado = localStorage.getItem(
-          `formularioEnviado_${usuario.id}`
-        );
-        if (formularioYaEnviado) {
-          setFormularioEnviado(true);
-        }
-      }
-    };
-
-    verificarFormularioEnviado();
-  }, [usuario]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,17 +64,8 @@ const FormForArtist = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formularioYaEnviado = localStorage.getItem(
-      `formularioEnviado_${usuario.id}`
-    );
-    if (formularioYaEnviado) {
-      // Si ya se ha enviado, no hagas nada
-      return;
-    }
-
     try {
-      setLoading(true); // Establecer loading a true mientras se envía
-
+      // Continuar con el envío del formulario
       const response = await fetch(
         "http://localhost:3001/users/content_artists",
         {
@@ -96,51 +79,33 @@ const FormForArtist = () => {
 
       if (response.ok) {
         const contentUser = await response.json();
-        setUsuario((prevUsuario) => ({
-          ...prevUsuario,
-          content_user: contentUser,
-        }));
-
-        setFormularioEnviado(true);
-        localStorage.setItem(`formularioEnviado_${usuario.id}`, "true");
-
-        const idsResponse = await fetch(
-          `http://localhost:3001/users/content_artists/get_ids_by_user?user_id=${id}`
-        );
-        if (idsResponse.ok) {
-          const ids = await idsResponse.json();
-          console.log("IDs actualizados:", ids);
-        } else {
-          console.error("Error al obtener los IDs actualizados.");
-        }
-
+        console.log("Formulario enviado:", contentUser.form_submitted);
         console.log("Formulario enviado con éxito");
+        setInfoArtist(true);
       } else {
         const errorData = await response.json();
         console.error("Error al enviar el formulario:", errorData);
       }
     } catch (error) {
       console.error("Error de red:", error);
-    } finally {
-      setLoading(false); // Establecer loading de nuevo a false después del envío
     }
   };
 
   if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (formularioEnviado) {
-    return <PagePrincipalArtist contentUserData={usuario.content_user} />;
+    return <p>Cargando...</p>;
   }
 
   return (
     <>
-      <HandleFormForArtist
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        formData={formData}
-      />
+      {infoArtist ? (
+        <PagePrincipalArtist contentUserData={usuario} />
+      ) : (
+        <HandleFormForArtist
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          formData={formData}
+        />
+      )}
     </>
   );
 };
