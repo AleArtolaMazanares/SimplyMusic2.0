@@ -12,8 +12,22 @@ class Users::ArtistsController < ApplicationController
     render json: @artist
   end
 
+  def get_ids_by_user
+    user_id = params[:user_id]
+    artist = Artist.where(user_id: user_id).pluck(:name_artist, :form_submitted)
+    
+    # Construir un hash con las claves name y form_submitted
+    artist = artist.map do |name_artist, form_submitted|
+      { name_artist: name_artist, form_submitted: form_submitted }
+    end
+    
+    render json: artist
+  end
+
   def create
     @artist = Artist.new(artist_params)
+
+    @artist.form_submitted = true
 
     if @artist.save
       render json: @artist, status: :created

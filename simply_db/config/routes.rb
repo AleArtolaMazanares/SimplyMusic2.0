@@ -37,11 +37,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :artists
+    resources :artists do
+      get :get_ids_by_user
+    end
     resources :content_artists do
       collection do
         get :get_ids_by_user
-        get :get_userID_by_content_artist
       end
     end
   end
