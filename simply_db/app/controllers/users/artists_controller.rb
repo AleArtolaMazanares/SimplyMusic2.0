@@ -13,15 +13,12 @@ class Users::ArtistsController < ApplicationController
   end
 
   def create
-    if current_user
-      @artist = current_user.artists.build(artist_params)
-      if @artist.save
-        render json: { status: :success, message: 'Registro exitoso, espera respuesta de un administrador.' }
-      else
-        render json: { errors: @artist.errors.full_messages, status: :unprocessable_entity }
-      end
+    @artist = Artist.new(artist_params)
+
+    if @artist.save
+      render json: @artist, status: :created
     else
-      render json: { errors: 'No se ha encontrado un usuario autenticado.', status: :unprocessable_entity }
+      render json: @artist.errors, status: :unprocessable_entity
     end
   end
   private
@@ -35,7 +32,8 @@ class Users::ArtistsController < ApplicationController
       :social, 
       :description_artist, 
       :tags, 
-      :mp3_file
+      :mp3_file,
+      :user_id
     )
   end
 end

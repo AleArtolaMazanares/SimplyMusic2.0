@@ -10,6 +10,6 @@ class Artist < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         validates_presence_of :name_artist, :social, :description_artist, :tags
+         validates_presence_of :name_artist, :social, :description_artist, :tags, :user_id
 
 end
