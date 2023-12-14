@@ -40,6 +40,7 @@ const FormForArtist = () => {
           );
           if (idsResponse.ok) {
             const info = await idsResponse.json();
+            console.log(info)
             const saveInfo = info[0].form_submitted;
             setInfoArtist(saveInfo === true);
           }

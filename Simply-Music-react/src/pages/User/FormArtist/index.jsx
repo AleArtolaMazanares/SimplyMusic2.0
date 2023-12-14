@@ -74,6 +74,7 @@ function Artist() {
 
       if (response.ok) {
         setFormSubmitted(true);
+        window.location.href = "/home"
       } else {
         console.error("Form submission failed:", response.statusText);
       }
