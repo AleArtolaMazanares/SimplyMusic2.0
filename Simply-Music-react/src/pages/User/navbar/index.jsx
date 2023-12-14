@@ -35,6 +35,7 @@ function NavBar() {
     fetchData();
   }, [decryptData]);
 
+
   useEffect(() => {
     const fetchFormSubmit = async () => {
       try {

@@ -98,6 +98,7 @@ function PagePrincipalArtist() {
     }
   }, [idContent]);
 
+
   return (
     <div className="containerar">
       {loading ? (
@@ -128,15 +129,15 @@ function PagePrincipalArtist() {
         ))
       )}
       <div className="linksArtist">
-        <Link to={`/editPageArtist/${idContent[0]}`} className="link-style">
+        <Link to={`/editPageArtist/${idContent[0]?.id}`} className="link-style">
           Edit Data
         </Link>
         <br />
-        <Link to={`/songSubmit/${idContent}`} className="link-style">
+        <Link to={`/songSubmit/${idContent[0]?.id}`} className="link-style">
           Submit song
         </Link>
         <br />
-        <Link to={`/messageArtist/${idContent}`} className="link-style">
+        <Link to={`/messageArtist/${idContent[0]?.id}`} className="link-style">
           Message
         </Link>
         <br />
