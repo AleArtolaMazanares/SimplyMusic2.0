@@ -63,6 +63,8 @@ function NavBar() {
       getArtistsByUser();
     }
   }, [userId]);
+  
+  console.log(userId)
 
   return (
     <>
