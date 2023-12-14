@@ -93,7 +93,7 @@ function MainAdmin() {
 
   return (
     <div  className="contentMainAdmin">
-      
+      <div className="contentAdmin">
       <div className="inputAdmin">
         <input
           type="text"
@@ -128,6 +128,8 @@ function MainAdmin() {
           )}
           {!searchQuery.trim() && (
             <div >
+              <div id="containerUserList">
+                <div id="cardsAdminUser">
               <h3>User List</h3>
            
                 {users.map((user) => (
@@ -136,13 +138,19 @@ function MainAdmin() {
                       {user.username}
                       <p>{user.name_users}</p>
                     </Link>
+                    
                     <MyButton
                       onClick={() => handleDeleteUser(user.id, false)}
                     ></MyButton>
+                    
                   </div>
-                ))}
-            
+                  
+                ))} </div>
+                </div>
 
+              <div id="contenArtistList">
+                <div >
+                  <div id="cardsAdminArtist">
               <h3>Artist List</h3>
              
                 {artists.map((artist) => (
@@ -155,12 +163,13 @@ function MainAdmin() {
                       onClick={() => handleDeleteUser(artist.id, true)}
                     ></MyButton>
                   </div>
-                ))}
+                ))}</div></div></div>
             
             </div>
           )}
         </div>
       )}
+      </div>
     </div>
   );
 }

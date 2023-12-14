@@ -9,17 +9,27 @@
 
 
 .contentMainAdmin{
-    background-color: red;
-    width: 60%;
-    min-height: 500px;
-    display: grid;
-    margin-left: 15%;
+    margin-top: 1%;
+    padding: 25px;
+    min-width: 400px;
+    min-height: 480px;
+    margin-left: 10%;
+    background-color: rgba(26, 27, 27, 0.505);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    outline: 1px solid rgba(29, 122, 171, 1);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .inputAdmin{
     background-color: aqua;
-    width: 350px;
     padding: 25px;
+    width: 25%;
+    margin-left: 33%;
+
 }
 
 .inputAdmin input{
@@ -27,4 +37,40 @@
     height: 40px;
     margin-left: 20%;
 
+}
+
+#containerUserList{
+    background-color: aqua;
+    padding: 5px;
+    width: 500px;
+    margin-left: 25%;
+
+}
+
+#contenArtistList{
+    background-color: aqua;
+    padding: 5px;
+    width: 500px;
+    margin-left: 25%;
+      outline: 2px solid rgba(29, 122, 171, 1);
+}
+
+
+#cardsAdminUser{
+    background-color: rgb(238, 21, 21);
+    outline: 2px solid rgba(29, 122, 171, 1);
+  
+ 
+}
+#cardsAdminArtist{
+    background-color: rgb(238, 21, 21);
+    outline: 2px solid rgba(29, 122, 171, 1);
+  
+ 
+}
+
+.contentAdmin{
+    background-color: rgb(133, 39, 39);
+    min-width: 400px;
+    min-height: 300px;
 }

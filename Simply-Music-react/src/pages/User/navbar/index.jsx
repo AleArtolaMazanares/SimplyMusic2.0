@@ -3,16 +3,15 @@ import { Link, Outlet } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { useSimplyContext } from "../../../components/simplyContext/simplyProvider";
-
 import "./style.css";
 
 function NavBar() {
   const { userRole, decryptData } = useSimplyContext();
   const [prueba, setPrueba] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [formSubmit, setFormSubmit] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [formSubmit2, setFormSubmit2] = useState(false);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
@@ -32,33 +31,31 @@ function NavBar() {
       }
     };
 
+    // Llamar a la función para obtener los datos de usuario
     fetchData();
   }, [decryptData]);
 
-
   useEffect(() => {
-    const fetchFormSubmit = async () => {
+    const getArtistsByUser = async () => {
       try {
-        const storedFormSubmit = localStorage.getItem(
-          `formSubmitted_${userId}`
+        // Realizar la llamada a la API para obtener los datos de los artistas por usuario
+        const response = await fetch(
+          `http://localhost:3001/users/artists/content_artists/get_ids_by_user?user_id=${userId}`
         );
-        if (storedFormSubmit === "true") {
-          setFormSubmit(true);
-        }
+        const data = await response.json();
+        setFormSubmit2(data[0].form_submitted);
+        // Puedes hacer más cosas con los datos, como actualizar el estado del componente
+        setIsLoading(false); // Marcar que ya se cargaron los datos
       } catch (error) {
-        console.error("Error during fetching FormSubmit:", error);
+        console.error("Error fetching artist data:", error);
       }
     };
 
+    // Llamar a la función para obtener los datos cuando userId esté disponible
     if (userId) {
-      fetchFormSubmit();
+      getArtistsByUser();
     }
   }, [userId]);
-
-  useEffect(() => {
-    // Marcar que ya se cargaron los datos
-    setIsLoading(false);
-  }, [prueba, userId]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -92,15 +89,15 @@ function NavBar() {
 
               <Link
                 to={`/FormArtist/${userId}`}
-                className={formSubmit ? "disabled-link" : ""}
+                className={formSubmit2 ? "disabled-link" : ""}
               >
                 <div>
                   <FontAwesomeIcon
                     icon={faMicrophone}
                     id="iconHome"
-                    className={formSubmit ? "disabled-icon" : ""}
+                    className={formSubmit2 ? "disabled-icon" : ""}
                   />
-                  {formSubmit ? "En revision" : "Artist"}
+                  {formSubmit2 ? "En revision" : "Artist"}
                 </div>
               </Link>
               <Link to={"/"}>Logout</Link>
