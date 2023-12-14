@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :content_artists do
       collection do
         get :get_ids_by_user
+        get :get_userID_by_content_artist
       end
     end
   end
