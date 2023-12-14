@@ -15,6 +15,12 @@
   margin-top: 0.2%;
 }
 
+.disabled-link {
+  color: gray; /* o cualquier otro color que desees para indicar que está desactivado */
+  pointer-events: none; /* Desactiva la interacción con el enlace */
+  cursor: not-allowed; /* Cambia el cursor para indicar que el enlace no es interactivo */
+}
+
 .sidebar.open {
   left: 0;
   

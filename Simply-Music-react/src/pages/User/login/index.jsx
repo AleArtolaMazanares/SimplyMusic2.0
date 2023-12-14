@@ -67,14 +67,12 @@ const LoginForm = () => {
       localStorage.setItem("sessionData", encryptedSessionData);
 
       // Simular un tiempo de espera antes de redirigir (5 segundos)
-      setTimeout(() => {
-        setLoading(false);
-        if (data.user.role === "user" || data.user.role === "artist") {
-          navigate(`/user/${userId}`);
-        } else if (data.user.role === "admin") {
-          navigate(`/admin`);
-        }
-      }, 5000);
+
+      if (data.user.role === "user" || data.user.role === "artist") {
+        navigate(`/user/${userId}`);
+      } else if (data.user.role === "admin") {
+        navigate(`/admin`);
+      }
     } catch (error) {
       console.error("Error en la solicitud:", error);
       setLoading(false);

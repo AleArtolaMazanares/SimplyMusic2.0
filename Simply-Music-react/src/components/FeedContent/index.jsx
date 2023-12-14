@@ -153,17 +153,20 @@ function FeedContent() {
               </button>
             </div>
           ) : (
-            <div className="contentFeedC">
+            <div className="contentFeedC"> 
               {/* Vista normal si no está en modo de edición */}
-              {feed.content} - {feed.date}{" "}
+            <div className="containerContentFeed">  {feed.content} - {feed.date}{" "}</div>
               {String(feed.user_id) === String(authenticatedUserId) && (
-                <div>
+                
+                <div className="buttonsFeed">
                   <button onClick={() => deleteFeed(feed.id)}>Eliminar</button>
                   <button onClick={() => setEditingFeed(feed.id)}>
                     Editar
                   </button>
                 </div>
+                
               )}
+            
               <p>
                 {feed.user_info.name_users}{" "}
                 {feed.user_info.role === "artist" && (

@@ -1,24 +1,23 @@
-// NavBar.js
+import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { useSimplyContext } from "../../../components/simplyContext/simplyProvider";
 
 import "./style.css";
-import { useState, useEffect } from "react";
 
 function NavBar() {
   const { userRole, decryptData } = useSimplyContext();
   const [prueba, setPrueba] = useState(null);
-  const [userId, SetUserId] = useState([]);
-
+  const [userId, setUserId] = useState(null);
+  const [formSubmit, setFormSubmit] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  // Ejemplo de cómo usar decryptData
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,7 +25,7 @@ function NavBar() {
         if (sessionData) {
           const decryptedData = await decryptData(sessionData);
           setPrueba(decryptedData);
-          SetUserId(decryptedData.userId);
+          setUserId(decryptedData.userId);
         }
       } catch (error) {
         console.error("Error during session decryption:", error);
@@ -35,6 +34,34 @@ function NavBar() {
 
     fetchData();
   }, [decryptData]);
+
+  useEffect(() => {
+    const fetchFormSubmit = async () => {
+      try {
+        const storedFormSubmit = localStorage.getItem(
+          `formSubmitted_${userId}`
+        );
+        if (storedFormSubmit === "true") {
+          setFormSubmit(true);
+        }
+      } catch (error) {
+        console.error("Error during fetching FormSubmit:", error);
+      }
+    };
+
+    if (userId) {
+      fetchFormSubmit();
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    // Marcar que ya se cargaron los datos
+    setIsLoading(false);
+  }, [prueba, userId]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -62,10 +89,17 @@ function NavBar() {
                 </div>
               </Link>
 
-              <Link to={`/FormArtist`}>
+              <Link
+                to={`/FormArtist/${userId}`}
+                className={formSubmit ? "disabled-link" : ""}
+              >
                 <div>
-                  <FontAwesomeIcon icon={faMicrophone} id="iconHome" />
-                  Artist
+                  <FontAwesomeIcon
+                    icon={faMicrophone}
+                    id="iconHome"
+                    className={formSubmit ? "disabled-icon" : ""}
+                  />
+                  {formSubmit ? "En revision" : "Artist"}
                 </div>
               </Link>
               <Link to={"/"}>Logout</Link>
