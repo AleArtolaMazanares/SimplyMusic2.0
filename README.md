@@ -1,3 +1,36 @@
+Music App - README
+Overview
+This repository contains the source code for a music application designed to provide users with a seamless music listening experience. It enables users to explore music from various artists, share thoughts, and even enables aspiring artists to join the platform.
+
+Features
+User Authentication: The app opens with a login screen prompting users to log in or register for an account.
+
+Home Page Navigation: After logging in, users are directed to the home page. Here, users can navigate to different sections of the app.
+
+Explore Artists: Users have the option to explore various artists and listen to their music.
+
+Share Thoughts: A dedicated section allows users to share their thoughts or messages.
+
+Artist Application: Aspiring artists can request to join the platform as an artist, enabling them to share their music.
+
+Installation
+Clone Repository:
+git clone https://github.com/your-username/music-app.git
+
+
+Copy code
+git clone https://github.com/your-username/music-app.git
+
+Installation Dependencies:
+cd music-app
+npm install
+
+
+Run Application:
+npm start
+
+npm start
+
 Technologies Used
 Frontend: HTML, CSS, JavaScript, React
 Backend: Ruby On Rail
