@@ -110,16 +110,16 @@ function PagePrincipalArtist() {
             <img src={artist.image} alt="" id="imgContentArtist" /></div> 
          <div className="songsArtistPage"> <h3>YOUR SONGS:</h3>
             {artist.songs.length > 0 ? (
-              <ul>
+              <div>
                 {artist.songs.map((song) => (
-                  <li key={song.id}>
-                    {song.title_song} - {song.genre} - {song.song_duration}
-                    <button onClick={() => handleDeleteSong(song.id)}>
+                  <div id="containerSongsMain" key={song.id}>
+                   <div className="SongsContentArtis"> {song.title_song} - {song.genre} - {song.song_duration}</div>
+                   <div className="containerButtonsDelete"> <button id="buttonArtistMain" onClick={() => handleDeleteSong(song.id)}>
                       Eliminar
-                    </button>
-                  </li>
+                    </button></div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             ) : (
               <p>No hay canciones para este artista</p>
             )}</div>

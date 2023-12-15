@@ -3,6 +3,8 @@ import "../cardAtistDetails/style.css"
 import Messages from "../messages";
 
 function CardArtistDetail({prueba, messages}) {
+
+
   return (
     <div className="card">
       <div className="content">
@@ -18,9 +20,7 @@ function CardArtistDetail({prueba, messages}) {
             <div className="circle" id="bottom"></div>
             <h1 id="titleCard">Simply Music</h1>
             
-           <div id="infoCardArtist"><p >Joseph Capriati, born as Giuseppe Capriati (born 25 July 1987 in Caserta, Italy) is an Italian DJ and music producer.
-           Capriati released his first album under the name Save My Soul in July 2010 with Analytic Trail.
-           Capriati released an EP called Congenial Endeavor in collaboration with Adam Beyer that was released on Beyer's label.</p></div> 
+           <div id="infoCardArtist"><p >{prueba.description}</p></div> 
           <div id="messagesArtistContent"><Messages messages={messages} /></div> 
           
           </div>

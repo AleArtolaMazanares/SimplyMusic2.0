@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../handleFeed/style.css"
 
 function HandleFeed({ id }) {
   const [feeds, setFeeds] = useState([]);
@@ -40,7 +41,7 @@ function HandleFeed({ id }) {
   };
 
   return (
-    <div>
+    <div className="ContainerFeed">
       <h2>Feeds for User {id}</h2>
       {feeds.length === 0 ? (
         <p>0 new posts</p>

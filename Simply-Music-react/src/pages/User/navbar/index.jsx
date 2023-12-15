@@ -12,9 +12,14 @@ function NavBar() {
   const [isNavOpen, setIsNavOpen] = useState(true);
   const [formSubmit2, setFormSubmit2] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
+  };
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
@@ -33,38 +38,42 @@ function NavBar() {
       }
     };
 
-    // Llamar a la función para obtener los datos de usuario
     fetchData();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [decryptData]);
 
   useEffect(() => {
     const getArtistsByUser = async () => {
       try {
         if (userId) {
-          setLoading(true); // Inicia el estado de carga antes de la llamada a la API
+          setLoading(true);
 
-          // Realizar la llamada a la API para obtener los datos de los artistas por usuario
           const response = await fetch(
             `http://localhost:3001/users/artists/content_artists/get_ids_by_user?user_id=${userId}`
           );
           const data = await response.json();
           setFormSubmit2(data[0].form_submitted);
-          // Puedes hacer más cosas con los datos, como actualizar el estado del componente
         }
       } catch (error) {
         console.error("Error fetching artist data:", error);
       } finally {
-        setLoading(false); // Finaliza el estado de carga después de la llamada a la API
+        setLoading(false);
       }
     };
 
-    // Llamar a la función para obtener los datos cuando userId esté disponible
     if (userId) {
       getArtistsByUser();
     }
   }, [userId]);
-  
-  console.log(userId)
+
+  useEffect(() => {
+    setIsNavOpen(windowWidth > 768);
+  }, [windowWidth]);
 
   return (
     <>

@@ -108,19 +108,19 @@ function MainAdmin() {
           <div>
             {searchQuery.trim() !== "" && filteredResults.length > 0 && (
               <div>
-                <h3>Search Results</h3>
-
                 {filteredResults.map((result) => (
-                  <div key={result.id}>
-                    <Link id="linkAdmins" to={`/editPageAdmin/${result.id}`}>
-                      {result.username}
-                      <p>{result.name_users}</p>
-                    </Link>
-                    <MyButton
-                      onClick={() =>
-                        handleDeleteUser(result.id, result.role === "artist")
-                      }
-                    ></MyButton>
+                  <div className="containerSearchAdmin">
+                    <div key={result.id}>
+                      <Link id="linkAdmins" to={`/editPageAdmin/${result.id}`}>
+                        {result.username}
+                        <p >{result.name_users}</p>
+                      </Link>
+                      <MyButton
+                        onClick={() =>
+                          handleDeleteUser(result.id, result.role === "artist")
+                        }
+                      ></MyButton>
+                    </div>
                   </div>
                 ))}
               </div>

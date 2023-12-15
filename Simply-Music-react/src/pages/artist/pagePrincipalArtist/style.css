@@ -3,9 +3,9 @@
   border: 4px ridge rgba(29, 122, 171, 1);
   align-items: center;
   justify-content: center;
-  height: 520px; /* Ajusta la altura según necesites */
+  min-height: 520px; /* Ajusta la altura según necesites */
   padding: 20px;
-  width: 900px; /* Ajusta el ancho según necesites */
+  width: 750px; /* Ajusta el ancho según necesites */
   text-align: center;
   color: white; /* Cambiado a blanco para coincidir con el diseño */
   background-color: #151515; /* Cambiado para coincidir con el diseño */
@@ -18,12 +18,14 @@
 .artist-info {
   background-color: rgba(29, 122, 171, 1);
   height: 300px;
-  width: 350px;
+  width: 300px;
   border-radius: 8px;
   padding: 20px;
   border: 4px ridge rgba(29, 122, 171, 1);
   box-shadow: 0px 0px 10px 1px #000000ee; 
-  margin-left: -15%;
+  margin-left: 5%;
+  text-align: center;
+ 
 }
 
 .artist-info ul{
@@ -35,7 +37,7 @@
   width: 250px;
   border-radius: 8px;
   margin-bottom: 20px;
-  margin-left: 14.5%;
+  margin-left: 8%;
 }
 
 .link-style {
@@ -51,7 +53,7 @@
   margin-left: -25%;
  text-align: left;
  font-size: 18px;
- margin-top: -20%;
+ margin-top: -50%;
 
 }
 
@@ -60,8 +62,121 @@
 }
 
  .songsArtistPage {
-  margin-left: -20%;
+  margin-left: 1%;
   width: 600px;
-  height: 150px;
-  background-color: red;
+  min-height: 250px;
+  background-color: rgba(46, 43, 43, 0.571);
+  padding: 20px;
+  margin-top: 1%;
+  border-radius: 8px;
  }
+
+ #buttonArtistMain{
+  width: 60px;
+  height: 35px;
+  margin: 0;
+  color: white;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 7px;
+  border: 0;
+  outline: 1px solid rgba(29, 122, 171, 1);
+  border-radius: 8px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all ease-in-out .3s;
+  box-sizing: border-box;
+  margin-left: 5%;
+
+ }
+ #buttonArtistMain:hover{
+background-color: rgba(29, 122, 171, 1);
+ }
+
+ #containerSongsMain{
+  background-color: #322f2f7c;
+  margin: 5px;
+  height: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+ }
+.SongsContentArtist{
+margin-left: 20%;
+font-size: 20px;
+}
+
+ .containerButtonsDelete{
+  margin-left: 2%;
+  position: absolute;
+ }
+
+
+ @media screen and (max-width: 768px) {
+  .containerar {
+    margin-left: 5%; /* Ajustado para pantallas más pequeñas */
+    width: 85%; /* Ajustado para pantallas más pequeñas */
+    display: grid;
+  }
+
+  .artist-info {
+    width: 90%; /* Ajustado para pantallas más pequeñas */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .songsArtistPage {
+    width: 90%; /* Ajustado para pantallas más pequeñas */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .SongsContentArtist{
+    width: 300px;
+  }
+  .linksArtist{
+    margin-left: -30%;
+    margin-top: -90%;
+  }
+  
+}
+
+@media screen and (max-width: 576px) {
+  .containerar {
+    margin-left: 5%; /* Ajustado para pantallas más pequeñas */
+    max-width: 95%; /* Ajustado para pantallas más pequeñas */
+    padding: 10px; /* Ajustado para pantallas más pequeñas */
+    min-height: auto; /* Ajustado para pantallas más pequeñas */
+  }
+
+  .artist-info {
+    width: 70%; /* Ajustado para pantallas más pequeñas */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #imgContentArtist {
+    height: 200px; /* Ajustado para pantallas más pequeñas */
+    width: 200px; /* Ajustado para pantallas más pequeñas */
+    margin-bottom: 10px; /* Ajustado para pantallas más pequeñas */
+  }
+
+  .linksArtist {
+    font-size: 14px; /* Ajustado para pantallas más pequeñas */
+    margin-top: 0%; /* Ajustado para pantallas más pequeñas */
+    display: flex;
+    margin-left: 5%;
+  }
+
+  .songsArtistPage {
+    width: 95%; /* Ajustado para pantallas más pequeñas */
+    padding: 10px; /* Ajustado para pantallas más pequeñas */
+    margin-top: 5px; /* Ajustado para pantallas más pequeñas */
+  }
+
+  .SongsContentArtist {
+    margin-left: 30%; /* Ajustado para pantallas más pequeñas */
+    font-size: 14px; 
+    width: 150px;/* Ajustado para pantallas más pequeñas */
+  }
+  
+}

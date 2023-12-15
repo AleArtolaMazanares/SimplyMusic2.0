@@ -7,8 +7,6 @@
 }
 
 /* Estilos para la información del artista */
-.artistInfoArtistDetail {
-}
 
 /* Estilos para la imagen del artista */
 #imgContentDetailsArtist {
@@ -48,4 +46,15 @@
 /* Estilos para el nombre del artista */
 #nameArtist {
   color: black;
+}
+
+@media (max-width: 768px) {
+  .containerArtistDetails{
+    display: grid;
+    margin-left: 200px;
+  }
+
+  .artistInfoArtistDetail{
+    margin-bottom: 100px;
+  }
 }

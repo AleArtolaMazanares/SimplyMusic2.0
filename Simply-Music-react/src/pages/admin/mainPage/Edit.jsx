@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 import HandleFeed from "../../../components/handleFeed";
+import "../../admin/mainPage/edit.css"
 
 function EditPageAdmin() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ function EditPageAdmin() {
   const [formData, setFormData] = useState({
     role: "",
     name_users: "",
-    email : "",
+    email: "",
   });
   const [contentArtistIds, setContentArtistIds] = useState([]);
 
@@ -25,7 +26,7 @@ function EditPageAdmin() {
         );
       }
       const data = await response.json();
-      console.log(`respuesta ${data}`);
+      console.log(data[0]?.id);
       setContentArtistIds(data);
     } catch (error) {
       console.error("Error fetching content artist IDs:", error.message);
@@ -92,59 +93,65 @@ function EditPageAdmin() {
       console.error("Network error:", error);
     }
   };
-  console.log(userData.id);
 
   return (
-    <div>
+    <div className="edit-page-container">
       <h2>Edit User Information</h2>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label>
+        <form onSubmit={handleSubmit} className="edit-form">
+          <label className="form-label">
             Role:
-            <select name="role" value={formData.role} onChange={handleChange}>
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="form-input"
+            >
               <option value="user">User</option>
               <option value="artist">Artist</option>
               <option value="admin">Admin</option>
             </select>
           </label>
-          <br />
-          <label>
+          <label className="form-label">
             Name:
             <input
               type="text"
               name="name_users"
               value={formData.name_users}
               onChange={handleChange}
+              className="form-input"
             />
           </label>
-          <label>
-            email:
+          <label className="form-label">
+            Email:
             <input
               type="text"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className="form-input"
             />
           </label>
           <HandleFeed id={userData.id} />
-          <br />
           {formData.role === "artist" && (
-            <p>
+            <p id="contentID">
               {loading
                 ? "Loading..."
                 : contentArtistIds.length > 0
-                ? `Content Artist IDs: ${contentArtistIds.join(", ")}`
+                ? `Content Artist IDs: ${contentArtistIds[0]?.id}`
                 : "Artist has not uploaded anything yet"}
             </p>
           )}
           {formData.role === "artist" && (
-            <Link to={`/editArtistPageAdmin/${contentArtistIds}`}>
-              <p>view details artist</p>
+            <Link to={`/editArtistPageAdmin/${contentArtistIds[0]?.id}`}>
+              <p>View details artist</p>
             </Link>
           )}
-          <button type="submit">Save Changes</button>
+          <button type="submit" className="submit-button">
+            Save Changes
+          </button>
         </form>
       )}
     </div>

@@ -86,9 +86,7 @@ function HomePage() {
     }
   };
 
-  const playSong = (song) => {
-    dispatch({ type: "PLAY", payload: song });
-  };
+
 
   return (
     <>
@@ -113,7 +111,7 @@ function HomePage() {
             <div className="containerCardsArtist">
               {(searchResults.length > 0 ? searchResults : artists).map(
                 (result) => (
-                  <div key={result.id} className="artist-card">
+                  <div key={result.id} className="">
                     {result.name && (
                       <Link className="linkCards" to={`/artists/${result.id}`}>
                         <div className="artist-card">

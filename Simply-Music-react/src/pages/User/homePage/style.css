@@ -81,9 +81,9 @@ background-color: #5a515178;
 }
 
 .linkCards {
-  text-decoration: none; /* Quita el subrayado predeterminado del enlace */
-  color: white; /* Color de texto blanco por defecto */
-  transition: color 0.3s ease; /* Transición suave para el cambio de color */
+  text-decoration: none; 
+  color: white; 
+  transition: color 0.3s ease; 
 }
 
 .linkCards:hover {
@@ -114,10 +114,10 @@ body{
   background-image: linear-gradient(90deg, rgba(80, 81, 81, 1), rgba(29, 122, 171, 1));
 }
 
-.containerCardsArtist{
-  background-color:rgba(76, 83, 86, 0.415) ;
+.containerCardsArtist {
+  background-color: rgba(76, 83, 86, 0.415);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2%;
   border-radius: 8px;
   align-items: center;
@@ -159,83 +159,8 @@ body{
 
 
 
-@media only screen and (max-width: 768px) {
-  /* Estilos para pantallas más pequeñas que 768px de ancho */
-  .container {
-    width: 90%;
-    margin-left: 5%;
-    padding: 15px;
-  }
 
-  .search-container {
-    margin-left: 0;
-    padding: 15px;
-  }
 
-  .input-search {
-    width: 100%;
-    margin-right: 0;
-  }
 
-  .button-search {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .artist-cards {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .artist-card {
-    width: 100%;
-    margin: 5px;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  /* Otros estilos que necesites adaptar */
-}
-
-@media only screen and (max-width: 480px) {
-  /* Estilos para pantallas más pequeñas que 480px de ancho */
-  .container {
-    width: 100%;
-    margin-left: 0;
-    padding: 10px;
-  }
-
-  .search-container {
-    padding: 10px;
-  }
-
-  .input-search {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .button-search {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .artist-cards {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .artist-card {
-    width: 100%;
-    margin: 5px;
-    height: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-    font-size: 12px;
-  }
-}
 
 

@@ -12,7 +12,10 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+  color: white;
 }
+
+
 
 .inputAdmin {
   padding: 25px;
@@ -27,7 +30,8 @@
 }
 
 #containerUserList,
-#contenArtistList {
+#contenArtistList,
+.containerSearchAdmin {
   padding: 15px;
   width: 90%; /* Ajusta el ancho según tus necesidades */
   background-color: #212121;
@@ -40,7 +44,9 @@
 #linkAdmins > p {
   background-color: #353030;
   border-radius: 10px;
+
 }
+
 
 .containerGlobalAdmin {
   display: flex;
@@ -49,6 +55,7 @@
 #cardsAdminUser h3 {
   font-size: 25px;
 }
+
 
 .contentAdmin {
   align-items: center;
@@ -59,6 +66,8 @@
   text-decoration: none;
   color: #ffbb66;
   font-size: 20px;
+  margin-top: 20px;
+  
 }
 
 #linkAdmins:hover {
@@ -68,21 +77,23 @@
 /* Agrega estos estilos dentro de tu media query para pantallas pequeñas */
 
 @media (max-width: 768px) {
-    .containerGlobalAdmin {
-        display: grid;
-        justify-content: center;
-    }
+  .containerGlobalAdmin {
+    display: grid;
+    justify-content: center;
+  }
 
-    .contentMainAdmin {
-        width: auto; /* Cambiado a 'auto' para que se ajuste al contenido */
-        margin-left: 5%; /* Ajusta el margen según tus necesidades */
-        margin-right: 5%; /* Ajusta el margen según tus necesidades */
-    }
+  .contentMainAdmin {
+    width: auto; /* Cambiado a 'auto' para que se ajuste al contenido */
+    margin-left: 5%; /* Ajusta el margen según tus necesidades */
+    margin-right: 5%; /* Ajusta el margen según tus necesidades */
+  }
 
-    #containerUserList,
-    #contenArtistList {
-        width: 250px; /* Ajusta el ancho según tus necesidades */
-        margin-left: 5%; /* Ajusta el margen según tus necesidades */
-        margin-right: 5%; /* Ajusta el margen según tus necesidades */
-    }
+  #containerUserList,
+  #contenArtistList {
+    width: 250px; /* Ajusta el ancho según tus necesidades */
+    margin-left: 5%; /* Ajusta el margen según tus necesidades */
+    margin-right: 5%; /* Ajusta el margen según tus necesidades */
+  }
 }
+
+/* SEARCH */
