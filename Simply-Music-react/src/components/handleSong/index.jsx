@@ -15,7 +15,6 @@ function HandleSong({
   genre,
   audioKey,
   autoPlay,
-  handleEnded,
   isPlaying,
   setIsPlaying,
   playPreviousSong,
@@ -26,14 +25,10 @@ function HandleSong({
   // Estado para almacenar la duración total de la canción
   const [duration, setDuration] = useState(0);
 
-  /* `const audioRef = useRef();` is creating a reference to the audio element in the component. This
-  reference can be used to access and manipulate the audio element directly, such as playing or
-  pausing the audio, changing the current time, or accessing other properties and methods of the
-  audio element. */
+  // Referencia al elemento de audio
   const audioRef = useRef();
 
-  /* This code block is responsible for playing or pausing the audio when the play/pause button is
-   clicked. */
+  // Función para manejar el inicio de la canción
   const handlePlay = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -49,19 +44,23 @@ function HandleSong({
     setIsPlaying(false);
   };
 
-  /* La línea `setCurrentTime(audioRef.current.currentTime);` está actualizando la variable de estado
-`currentTime` con el tiempo actual de la reproducción de audio. */
+  // Función para actualizar el tiempo de reproducción
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
   };
 
-  /* La línea `setDuration(audioRef.current.duration);` está actualizando la variable de estado `duration` con
-la duración total de la canción. */
+  // Función para actualizar la duración de la canción
   const handleLoadedData = () => {
     setDuration(audioRef.current.duration);
   };
 
-  /* El bloque de código que proporcionaste maneja el evento de clic en la barra de progreso del reproductor de audio. */
+  // Función para manejar el final de la canción
+  const handleEnded = () => {
+    // Lógica para reproducir la siguiente canción
+    playNextSong();
+  };
+
+  // Función para manejar clic en la barra de progreso
   const handleProgressBarClick = (e) => {
     const clickedTime =
       (e.nativeEvent.offsetX / e.target.clientWidth) * duration;
@@ -73,11 +72,7 @@ la duración total de la canción. */
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    // Formatear el tiempo en el formato "mm:ss"
-    const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
-      seconds
-    ).padStart(2, "0")}`;
-    return formattedTime;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   };
 
   // Renderización del componente
@@ -109,10 +104,7 @@ la duración total de la canción. */
                 onLoadedData={handleLoadedData}
               >
                 {/* Fuente de audio */}
-                <source
-                  src={`http://localhost:3001${song.song_file.url}`}
-                  type="audio/mp3"
-                />
+                <source src={`http://localhost:3001${song.song_file.url}`} type="audio/mp3" />
                 Tu navegador no soporta la etiqueta de audio.
               </audio>
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../../../pages/artist//pagePrincipalArtist/edit.css";
+import Swal from 'sweetalert2'
 
 function EditPage() {
   const { id } = useParams(); // Obtener el id de la URL
@@ -59,7 +60,14 @@ function EditPage() {
       );
 
       if (response.ok) {
-        console.log("Información del artista actualizada con éxito");
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Update",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        
       } else {
         const errorData = await response.json();
         console.error("Error al actualizar la información del artista:", errorData);

@@ -1,76 +1,88 @@
-.containerGlobalMainPage{
-    display: flex;
+/* style.css */
+
+.contentMainAdmin {
+  margin-top: 1%;
+  padding: 25px;
+  min-width: 400px;
+  min-height: 480px;
+  margin-left: 10%;
+  background-color: rgba(26, 27, 27, 0.505);
+  border-radius: 4px;
+  outline: 1px solid rgba(29, 122, 171, 1);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.containerInformationUsersAndArtist{
-    margin: 0 auto;
+.inputAdmin {
+  padding: 25px;
+  width: 55%;
+  margin-left: 18%;
 }
 
-
-
-.contentMainAdmin{
-    margin-top: 1%;
-    padding: 25px;
-    min-width: 400px;
-    min-height: 480px;
-    margin-left: 10%;
-    background-color: rgba(26, 27, 27, 0.505);
-    border-radius: 8px;
-    justify-content: center;
-    align-items: center;
-    outline: 1px solid rgba(29, 122, 171, 1);
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+.inputAdmin input {
+  width: 100%; /* Hace que el ancho del input sea 100% del contenedor */
+  height: 40px;
+  margin-top: 5%;
 }
 
-.inputAdmin{
-    background-color: aqua;
-    padding: 25px;
-    width: 25%;
-    margin-left: 33%;
-
+#containerUserList,
+#contenArtistList {
+  padding: 15px;
+  width: 90%; /* Ajusta el ancho según tus necesidades */
+  background-color: #212121;
+  border: 2px solid rgba(29, 122, 171, 1);
+  box-shadow: 1px 1px 10px 1px white;
+  margin-left: 5%; /* Ajusta el margen según tus necesidades */
+  margin-top: 2%;
 }
 
-.inputAdmin input{
-    width: 200px;
-    height: 40px;
-    margin-left: 20%;
-
+#linkAdmins > p {
+  background-color: #353030;
+  border-radius: 10px;
 }
 
-#containerUserList{
-    background-color: aqua;
-    padding: 5px;
-    width: 500px;
-    margin-left: 25%;
-
+.containerGlobalAdmin {
+  display: flex;
 }
 
-#contenArtistList{
-    background-color: aqua;
-    padding: 5px;
-    width: 500px;
-    margin-left: 25%;
-      outline: 2px solid rgba(29, 122, 171, 1);
+#cardsAdminUser h3 {
+  font-size: 25px;
 }
 
-
-#cardsAdminUser{
-    background-color: rgb(238, 21, 21);
-    outline: 2px solid rgba(29, 122, 171, 1);
-  
- 
-}
-#cardsAdminArtist{
-    background-color: rgb(238, 21, 21);
-    outline: 2px solid rgba(29, 122, 171, 1);
-  
- 
+.contentAdmin {
+  align-items: center;
+  justify-content: center;
 }
 
-.contentAdmin{
-    background-color: rgb(133, 39, 39);
-    min-width: 400px;
-    min-height: 300px;
+#linkAdmins {
+  text-decoration: none;
+  color: #ffbb66;
+  font-size: 20px;
+}
+
+#linkAdmins:hover {
+  color: rgba(29, 122, 171, 1);
+}
+
+/* Agrega estos estilos dentro de tu media query para pantallas pequeñas */
+
+@media (max-width: 768px) {
+    .containerGlobalAdmin {
+        display: grid;
+        justify-content: center;
+    }
+
+    .contentMainAdmin {
+        width: auto; /* Cambiado a 'auto' para que se ajuste al contenido */
+        margin-left: 5%; /* Ajusta el margen según tus necesidades */
+        margin-right: 5%; /* Ajusta el margen según tus necesidades */
+    }
+
+    #containerUserList,
+    #contenArtistList {
+        width: 250px; /* Ajusta el ancho según tus necesidades */
+        margin-left: 5%; /* Ajusta el margen según tus necesidades */
+        margin-right: 5%; /* Ajusta el margen según tus necesidades */
+    }
 }

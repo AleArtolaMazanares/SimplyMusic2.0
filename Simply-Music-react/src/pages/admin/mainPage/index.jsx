@@ -92,27 +92,27 @@ function MainAdmin() {
   };
 
   return (
-    <div  className="contentMainAdmin">
+    <div className="contentMainAdmin">
       <div className="contentAdmin">
-      <div className="inputAdmin">
-        <input
-          type="text"
-          placeholder="Search users"
-          value={searchQuery}
-          onChange={handleInputChange}
-        />
-      </div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          {searchQuery.trim() !== "" && filteredResults.length > 0 && (
-            <div>
-              <h3>Search Results</h3>
-            
+        <div className="inputAdmin">
+          <input
+            type="text"
+            placeholder="Search users"
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
+        </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            {searchQuery.trim() !== "" && filteredResults.length > 0 && (
+              <div>
+                <h3>Search Results</h3>
+
                 {filteredResults.map((result) => (
                   <div key={result.id}>
-                    <Link to={`/editPageAdmin/${result.id}`}>
+                    <Link id="linkAdmins" to={`/editPageAdmin/${result.id}`}>
                       {result.username}
                       <p>{result.name_users}</p>
                     </Link>
@@ -123,52 +123,57 @@ function MainAdmin() {
                     ></MyButton>
                   </div>
                 ))}
-            
-            </div>
-          )}
-          {!searchQuery.trim() && (
-            <div >
-              <div id="containerUserList">
-                <div id="cardsAdminUser">
-              <h3>User List</h3>
-           
-                {users.map((user) => (
-                  <div key={user.id}>
-                    <Link to={`/editPageAdmin/${user.id}`}>
-                      {user.username}
-                      <p>{user.name_users}</p>
-                    </Link>
-                    
-                    <MyButton
-                      onClick={() => handleDeleteUser(user.id, false)}
-                    ></MyButton>
-                    
+              </div>
+            )}
+            {!searchQuery.trim() && (
+              <div className="containerGlobalAdmin">
+                <div id="containerUserList">
+                  <div id="cardsAdminUser">
+                    <h3>User List</h3>
+                    {users.map((user) => (
+                      <div key={user.id}>
+                        <Link id="linkAdmins" to={`/editPageAdmin/${user.id}`}>
+                          <p>
+                            {user.name_users}
+                            <MyButton
+                              onClick={() => handleDeleteUser(user.id, false)}
+                            ></MyButton>
+                          </p>
+                        </Link>
+                      </div>
+                    ))}
                   </div>
-                  
-                ))} </div>
                 </div>
 
-              <div id="contenArtistList">
-                <div >
-                  <div id="cardsAdminArtist">
-              <h3>Artist List</h3>
-             
-                {artists.map((artist) => (
-                  <div key={artist.id}>
-                    <Link to={`/editPageAdmin/${artist.id}`}>
-                      {artist.username}
-                      <p>{artist.name_users}</p>
-                    </Link>
-                    <MyButton
-                      onClick={() => handleDeleteUser(artist.id, true)}
-                    ></MyButton>
+                <div id="contenArtistList">
+                  <div>
+                    <div id="cardsAdminArtist">
+                      <h3>Artist List</h3>
+
+                      {artists.map((artist) => (
+                        <div key={artist.id}>
+                          <Link
+                            id="linkAdmins"
+                            to={`/editPageAdmin/${artist.id}`}
+                          >
+                            <p>
+                              {artist.name_users}{" "}
+                              <MyButton
+                                onClick={() =>
+                                  handleDeleteUser(artist.id, true)
+                                }
+                              ></MyButton>
+                            </p>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}</div></div></div>
-            
-            </div>
-          )}
-        </div>
-      )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

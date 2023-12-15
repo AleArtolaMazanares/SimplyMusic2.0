@@ -10,6 +10,7 @@ function EditPageAdmin() {
   const [formData, setFormData] = useState({
     role: "",
     name_users: "",
+    email : "",
   });
   const [contentArtistIds, setContentArtistIds] = useState([]);
 
@@ -43,6 +44,7 @@ function EditPageAdmin() {
         setFormData({
           role: userData.role,
           name_users: userData.name_users,
+          email: userData.email,
         });
         setLoading(false);
 
@@ -114,6 +116,15 @@ function EditPageAdmin() {
               type="text"
               name="name_users"
               value={formData.name_users}
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            email:
+            <input
+              type="text"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
             />
           </label>

@@ -129,9 +129,6 @@ function HomePage() {
 
                     {result.title_song && (
                       <div>
-                        <button onClick={() => playSong(result)}>
-                          Reproducir
-                        </button>
                         <Link
                           className="linkCards"
                           to={`/PlaySong/${result.id}`}
@@ -159,8 +156,7 @@ function HomePage() {
           </div>
           <div className="feedContent">
             <center>
-
-            <FeedContent />
+              <FeedContent />
             </center>
           </div>
         </div>

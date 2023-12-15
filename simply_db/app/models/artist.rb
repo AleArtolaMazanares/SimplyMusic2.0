@@ -3,7 +3,6 @@ class Artist < ApplicationRecord
   belongs_to :user
   has_many :songs
   validates :mp3_file, presence: true
-  enum role: [:user, :artist]
   mount_uploader :mp3_file, Mp3FileUploader  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

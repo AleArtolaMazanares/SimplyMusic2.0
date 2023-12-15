@@ -19,7 +19,6 @@ import MessageArtist from "../pages/artist/messageArtist";
 import Album from "../pages/User/album";
 import AlbumArtist from "../pages/artist/albumArtist";
 import ReproductorMusic from "../pages/User/reproductor album";
-import NavBarAdmin from "../pages/admin/navBarAdmin";
 import MainAdmin from "../pages/admin/mainPage";
 import EditPageAdmin from "../pages/admin/mainPage/Edit";
 import DeatilsAdminArtist from "../pages/admin/mainPage/DeatilsAdminArtist";

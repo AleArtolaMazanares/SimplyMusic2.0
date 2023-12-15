@@ -80,8 +80,6 @@ const PlaySong = () => {
     }
   };
 
-  const handlePlay = () => setIsPlaying(true);
-
   const handleEnded = () => {
     // Manejar el evento de finalización de reproducción
     setIsPlaying(false);
@@ -100,29 +98,6 @@ const PlaySong = () => {
       } else {
         console.log(
           "No hay suficientes canciones filtradas disponibles para reproducir otra."
-        );
-      }
-    } catch (error) {
-      console.error("Error en la solicitud:", error.message);
-    }
-  };
-
-  const loadMoreSongs = async () => {
-    // Cargar más canciones relacionadas al género y al ID del contenido del artista actual
-    try {
-      const data = await fetchSongs();
-      const filteredSongs = filterSongsByGenreAndId(
-        data,
-        genre,
-        saveContentArtist
-      );
-
-      if (filteredSongs.length > 1) {
-        const randomSong = getRandomSong(filteredSongs);
-        updateAdditionalSongs(randomSong);
-      } else {
-        console.log(
-          "No hay suficientes canciones filtradas disponibles para cargar más."
         );
       }
     } catch (error) {
@@ -189,13 +164,6 @@ const PlaySong = () => {
   const filterSongsByGenre = (songs, genreToFilter) =>
     songs.filter((song) => song.genre === genreToFilter);
 
-  const filterSongsByGenreAndId = (songs, genreToFilter, idToFilter) => {
-    return filterSongsByGenre(
-      filterSongsById(songs, idToFilter),
-      genreToFilter
-    );
-  };
-
   const getRandomSong = (songs) => {
     // Obtener una canción aleatoria que no sea la actual
     let randomIndex = Math.floor(Math.random() * songs.length);
@@ -203,13 +171,6 @@ const PlaySong = () => {
       randomIndex = Math.floor(Math.random() * songs.length);
     }
     return songs[randomIndex];
-  };
-
-  const updateAdditionalSongs = (newSong) => {
-    // Actualizar el estado de canciones adicionales
-    setAdditionalSongs([...additionalSongs, newSong]);
-    setAudioKey((prevKey) => prevKey + 1);
-    setAutoPlay(true);
   };
 
   // Función para mezclar aleatoriamente un array (algoritmo de Fisher-Yates)
@@ -252,22 +213,48 @@ const PlaySong = () => {
   };
 
   const playNextSong = async () => {
-    // Manejar la reproducción de la siguiente canción en la lista de reproducción
     try {
       const data = await fetchSongs();
       const songsWithId75 = filterSongsById(data, saveContentArtist);
-      if (!isPlaying2) {
-        setIsPlaying2(!isPlaying2);
-      } else {
-        setIsPlaying2(isPlaying2);
-      }
       if (songsWithId75.length > 1) {
-        const randomSong = getRandomSong(songsWithId75);
-        updateSongState(randomSong);
-        // No inicia la reproducción automáticamente
+        const remainingSongs = songsWithId75.filter(
+          (song) => !playedSongs.includes(song)
+        );
+
+        if (remainingSongs.length > 0) {
+          const randomSong = getRandomSong(remainingSongs);
+          updateSongState(randomSong);
+          setIsPlaying2(true); // Iniciar la reproducción automáticamente
+        } else {
+          console.log(
+            "Ya has reproducido todas las canciones disponibles relacionadas. Reproduciendo una aleatoria del mismo género."
+          );
+          playRandomSongOfSameGenre();
+        }
       } else {
-        console.log(
-          "No hay suficientes canciones filtradas disponibles para reproducir otra."
+        alert(
+          "no hay mas canciones de este artista, se reproduce una aleatoria"
+        );
+
+        playRandomSongOfSameGenre();
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error.message);
+    }
+  };
+
+  const playRandomSongOfSameGenre = async () => {
+    try {
+      const data = await fetchSongs();
+      const songsWithSameGenre = filterSongsByGenre(data, genre);
+
+      if (songsWithSameGenre.length > 0) {
+        const randomSong = getRandomSong(songsWithSameGenre);
+        updateSongState(randomSong);
+        setIsPlaying2(true); // Iniciar la reproducción automáticamente
+      } else {
+        alert(
+          "no hay mas canciones de este artista, se reproduce una aleatoria"
         );
       }
     } catch (error) {
