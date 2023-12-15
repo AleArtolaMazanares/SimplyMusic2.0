@@ -46,9 +46,6 @@ class Users::ContentArtistsController < ApplicationController
     render json: content_artist_data
   end
 
-
-
-3
   private
 
   def content_artist_params

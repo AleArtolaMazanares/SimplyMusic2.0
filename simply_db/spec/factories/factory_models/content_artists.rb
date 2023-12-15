@@ -3,7 +3,8 @@ FactoryBot.define do
     name { Faker::Music.band }
     description { Faker::Lorem.paragraph }
     genre { Faker::Music.genre }
-    image { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'sample_image.jpg'), 'image/jpeg') }
+    image { Faker::LoremFlickr.image(size: "100x100") }
+    user_id { FactoryBot.create(:user).id }
     # Resto de los atributos
   end
 end
